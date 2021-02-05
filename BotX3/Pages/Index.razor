@@ -1,0 +1,42 @@
+﻿@page "/"
+@using System.ComponentModel
+@using OpenQA.Selenium
+@using OpenQA.Selenium.IE
+@using OpenQA.Selenium.Support.UI
+
+<div class="main-panel">
+    <div class="text-xl-center">Журнал</div>
+    <div id="ViewList">
+        
+    </div>
+</div>
+
+@code
+{
+    BackgroundWorker worker;
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        worker = new BackgroundWorker();
+        worker.WorkerSupportsCancellation = true;
+        worker.DoWork += StartBotService;
+    }
+
+    private void StartBotService(object? sender, DoWorkEventArgs e)
+    {
+        IWebDriver driver = new InternetExplorerDriver();
+        WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(16));
+        
+        try
+        {
+            IWebElement element = wait.Until(d => d.FindElement(By.Id("text")));
+            element.Click();
+        }
+        catch (Exception err)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        driver.Close();
+    }
+}

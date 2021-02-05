@@ -1,0 +1,19 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu/>
+    </div>
+
+    <div class="main">
+        <div class="top-row px-4">
+            <el-button class="btn btn-primary">START</el-button>
+            <el-button class="btn btn-dark">STOP</el-button>
+            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+        </div>
+
+        <div>
+            @Body
+        </div>
+    </div>
+</div>
