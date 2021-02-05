@@ -1,4 +1,5 @@
-﻿@inherits LayoutComponentBase
+﻿@inherits LayoutComponentBase;
+
 
 <div class="page">
     <div class="sidebar">
@@ -7,8 +8,8 @@
 
     <div class="main">
         <div class="top-row px-4">
-            <el-button class="btn btn-primary">START</el-button>
-            <el-button class="btn btn-dark">STOP</el-button>
+            <el-button class="btn btn-primary mx-1" @onclick="StartBot">START</el-button>
+            <el-button class="btn btn-dark mx-1">STOP</el-button>
             <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
         </div>
 
@@ -17,3 +18,17 @@
         </div>
     </div>
 </div>
+
+@code
+{
+    BotService botService;
+    protected override void OnInitialized()
+    {
+        botService = new BotService();
+    }
+
+    private void StartBot()
+    {
+        botService.StartService();
+    }
+}
